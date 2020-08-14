@@ -1,4 +1,5 @@
-import {RecordingID} from "../ValueObjects/recordingID";
+// import {RecordingID} from "../ValueObjects/recordingID";
+import * as mongoose from "mongoose";
 
 enum Type {
     LOL,
@@ -6,7 +7,12 @@ enum Type {
 }
 
 export class Recording {
-    constructor(private _id: RecordingID, private _type: Type, private _title: string, private _url: string, private _courseId: string){
+    public _id: mongoose.Types.ObjectId
+    public title: string
+
+    constructor(title?: string){
+        this._id = new mongoose.Types.ObjectId();
+        this.title = title || "AMIGO";
         //TODO: Launch domain event
         // record(
         //     new VideoCreatedDomainEvent(
@@ -15,28 +21,28 @@ export class Recording {
         // );
     }
 
-    public id(): RecordingID
-    {
-        return this._id;
-    }
-
-    public type(): Type
-    {
-        return this._type;
-    }
-
-    public title(): string
-    {
-        return this._title;
-    }
-
-    public url(): string
-    {
-        return this._url;
-    }
-
-    public courseId(): string
-    {
-        return this._courseId;
-    }
+    // public identifier(): RecordingID
+    // {
+    //     return this._identifier;
+    // }
+    //
+    // public type(): Type
+    // {
+    //     return this._type;
+    // }
+    //
+    // public title(): string
+    // {
+    //     return this._title;
+    // }
+    //
+    // public url(): string
+    // {
+    //     return this._url;
+    // }
+    //
+    // public courseId(): string
+    // {
+    //     return this._courseId;
+    // }
 }

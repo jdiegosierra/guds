@@ -1,11 +1,18 @@
+import {connect, model, Document, Model} from "mongoose";
+import {recordingSchema} from "../Schemas/Recording";
 import {Recording} from "../../Domain/Agregates/recording";
-import {connect, model, Document, Schema} from "mongoose";
+import * as mongoose from "mongoose";
+
+interface RecordingModel extends Recording, Document {
+    _id: mongoose.Types.ObjectId
+    title: string
+}
 
 export class RecordingRepositoryMongoDB {
-    private recording: any;
+    private readonly recordingModel: Model<RecordingModel>;
 
     constructor(){
-        console.log('tus muertos')
+        this.recordingModel = model<RecordingModel>("Recording", recordingSchema);
     };
 
     public async setup() {
@@ -22,25 +29,17 @@ export class RecordingRepositoryMongoDB {
                 console.error('Error connecting to database: ', error);
                 return process.exit(1);
             });
-
-        interface Recording extends Document {
-            title: string;
-            author: number;
-        }
-
-        const recordingSchema: Schema = new Schema({
-            title: { type: String, required: true },
-            author: { type: String, required: true }
-        });
-
-        this.recording = model<Recording>("Recording", recordingSchema);
     }
 
-    public save(recording: any): void {
-        const test = new this.recording({author: 'putonnn', title: 'puta tu'})
-        test.save().then(
-            console.log('ALLLRIGHTH')
-        );
+    public save(recording: Recording): void {
+        const test = new Recording('Un Pelicano');
+        const recordingDocument = new this.recordingModel(test);
+        console.log(recordingDocument);
+        recordingDocument.save((err: any, doc: RecordingModel) => {
+            if (err) { console.log(err)}
+            console.log(doc) // id at DB
+            console.log('Aqui no deberia llegar')
+        });
     }
 }
 

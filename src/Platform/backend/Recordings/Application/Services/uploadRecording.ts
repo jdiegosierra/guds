@@ -1,8 +1,7 @@
-import {Recording} from "../../../Recordings/Domain/Agregates/recording";
 import {RecordingRepositoryMongoDB} from "../../Infrastructure/Persistence/recordingRepositoryMongoDB";
+import {Recording} from "../../Domain/Agregates/recording";
 
 
-export function uploadRecording(recording: any, recordingRepository: RecordingRepositoryMongoDB) {
-    console.log('comenamos')
-    recordingRepository.save({author: 'putonnnn', title: 'puta tu'});
+export function uploadRecording(recording: Recording, recordingRepository: RecordingRepositoryMongoDB) {
+    recordingRepository.save(recording);
 }

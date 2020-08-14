@@ -1,7 +1,7 @@
 // const app = module.exports = require('express')();
-import express from 'express';
+const express = require("express");
 import {RecordingsController} from "./recordings";
-const app: express.Application = express();
+const app: any = express();
 
 app.get('/', (req, res) => {
     res.send({msg: 'Welcome to GUDS server!'});
@@ -10,7 +10,8 @@ app.get('/', (req, res) => {
 // app.use('', docs);
 // app.use('/api/v1/auth', require('./auth'));
 // app.use(require('./auth').verifyToken);
-app.use(new RecordingsController().router());
+const recordingController = new RecordingsController();
+app.use(recordingController.router());
 
 app.use('*', (req, res) => {
     res.status(404).send({msg: 'not found'})
