@@ -1,0 +1,38 @@
+{
+  "name": "guds",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jdiegosierra/guds.git",
+  "author": "jdiego.sierra@hotmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "nest build",
+    "format": "prettier --write \\\"src/**/*.ts\\\" \\\"tests/**/*.ts\\\"",
+    "start": "ts-node src/Platform/backend/index.ts",
+    "start:dev": "nodemon --exec ts-node src/Platform/backend/index.ts",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint '{src,apps,libs,test}/**/*.ts' --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "echo 'No e2e tests implemented yet.'",
+    "watch-ts": "tsc -w",
+    "watch-node": "nodemon dist/app.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\""
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/mongoose": "^5.7.36",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4",
+    "ts-node-dev": "^1.0.0-pre.57",
+    "typescript": "^3.9.7"
+  }
+}
