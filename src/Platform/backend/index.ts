@@ -1,6 +1,3 @@
-
-
-
 // import { Module } from '@nestjs/common';
 // // import { RpcModule } from './transport-layers/rpc/rpc.module';
 // import { RestModule } from './transport-layers/rest/rest.module';
@@ -154,11 +151,8 @@
 //     }
 // });
 
-import {Controllers} from "./API/HTTP/Controllers";
-import {RecordingsController} from "./API/HTTP/Controllers/recordings";
-
-(async () => {
-    new Controllers([new RecordingsController()]);
-})();
-
-
+import { Controllers } from './API/HTTP/Controllers'
+import { RecordingsController } from './API/HTTP/Controllers/recordings'
+;(async () => {
+  new Controllers([new RecordingsController()])
+})()
