@@ -8,7 +8,7 @@ import { Controller } from './Controller'
 
 const diskStorage = multer.diskStorage({
   destination(req, file, cb) {
-    cb(null, './tmp/')
+    cb(null, './videos/')
   },
   filename(req, file, cb) {
     cb(null, `${file.fieldname}-${Date.now()}`)

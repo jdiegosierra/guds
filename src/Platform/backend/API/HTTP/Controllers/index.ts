@@ -15,7 +15,7 @@ export class Controllers {
     this.app.use('*', (req, res) => {
       res.status(404).send({ msg: 'not found' })
     })
-    this.app.listen(3000, function () {
+    this.app.listen(3000, () => {
       console.log('App is listening on port 3000!')
     })
   }
