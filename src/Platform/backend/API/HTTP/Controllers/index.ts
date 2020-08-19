@@ -1,5 +1,8 @@
 import { Controller } from './Controller'
 import express = require('express')
+import * as dotenv from 'dotenv'
+dotenv.config({ path: __dirname + '/.env' })
+import config from '../../../../../../config/default'
 
 export class Controllers {
   private app: express.Application
@@ -15,8 +18,8 @@ export class Controllers {
     this.app.use('*', (req, res) => {
       res.status(404).send({ msg: 'not found' })
     })
-    this.app.listen(3000, () => {
-      console.log('App is listening on port 3000!')
+    this.app.listen(config.server.PORT, () => {
+      console.log('App is listening on port', config.server.PORT + '!')
     })
   }
 }
