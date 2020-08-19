@@ -1,22 +1,23 @@
-// const app = module.exports = require('express')();
-const express = require("express");
-import {RecordingsController} from "./recordings";
-const app: any = express();
+import {Controller} from './Controller';
+import express = require('express');
 
-app.get('/', (req, res) => {
-    res.send({msg: 'Welcome to GUDS server!'});
-})
 
-// app.use('', docs);
-// app.use('/api/v1/auth', require('./auth'));
-// app.use(require('./auth').verifyToken);
-const recordingController = new RecordingsController();
-app.use(recordingController.router());
+export class Controllers {
+    private app: express.Application;
 
-app.use('*', (req, res) => {
-    res.status(404).send({msg: 'not found'})
-});
-
-app.listen(3000, function () {
-    console.log('App is listening on port 3000!');
-});
+    constructor(controllers: Array<Controller>) {
+        this.app = express();
+        this.app.get('/', (req, res) => {
+            res.send('Welcome to GUDS server!');
+        });
+        controllers.forEach((controller: Controller) => {
+            this.app.use(controller.router())
+        });
+        this.app.use('*', (req, res) => {
+            res.status(404).send({msg: 'not found'})
+        });
+        this.app.listen(3000, function () {
+            console.log('App is listening on port 3000!');
+        });
+    }
+}

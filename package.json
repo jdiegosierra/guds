@@ -7,10 +7,10 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "tsc",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"tests/**/*.ts\\\"",
     "start": "ts-node src/Platform/backend/index.ts",
-    "start:dev": "nodemon --exec ts-node src/Platform/backend/index.ts",
+    "start:dev": "nodemon",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint '{src,apps,libs,test}/**/*.ts' --fix",
@@ -34,6 +34,7 @@
     "@types/multer": "^1.4.4",
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.57",
     "typescript": "^3.9.7"
   }

@@ -154,17 +154,11 @@
 //     }
 // });
 
-import {uploadRecording} from "./Recordings/Application/Services/uploadRecording";
-import {Recording} from "./Recordings/Domain/Agregates/recording";
-import {RecordingRepositoryMongoDB} from "./Recordings/Infrastructure/Persistence/recordingRepositoryMongoDB";
-import {RecordingID} from "./Recordings/Domain/ValueObjects/recordingID";
+import {Controllers} from "./API/HTTP/Controllers";
+import {RecordingsController} from "./API/HTTP/Controllers/recordings";
 
 (async () => {
-    console.log('vamh a ver')
-    const recording = new Recording(new RecordingID('1'), 0, 'test', 'test.com', 'ehe');
-    const recordingRepository: RecordingRepositoryMongoDB = new RecordingRepositoryMongoDB();
-    await recordingRepository.setup();
-    uploadRecording({author: 'putonnnnnnn', title: 'puta tu'}, recordingRepository);
+    new Controllers([new RecordingsController()]);
 })();
 
 
