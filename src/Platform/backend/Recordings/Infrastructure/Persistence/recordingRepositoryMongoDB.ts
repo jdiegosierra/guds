@@ -16,6 +16,7 @@ export class RecordingRepositoryMongoDB {
   }
 
   public async setup() {
+    //TODO: CLose connection
     const uri = 'mongodb://127.0.0.1:27017/local'
 
     connect(uri, { useNewUrlParser: true })
@@ -29,8 +30,7 @@ export class RecordingRepositoryMongoDB {
   }
 
   public save(recording: Recording): void {
-    const test = new Recording('Un Pelicano')
-    const recordingDocument = new this.recordingModel(test)
+    const recordingDocument = new this.recordingModel(recording)
     console.log(recordingDocument)
     recordingDocument.save((err: any, doc: RecordingModel) => {
       if (err) {
