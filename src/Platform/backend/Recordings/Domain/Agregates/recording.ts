@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 export class Recording {
-  public _id: any
+  public _id: mongoose.Types.ObjectId
 
-  constructor(public readonly title: string) {
+  constructor(readonly title: string) {
     this._id = new mongoose.Types.ObjectId()
 
     //TODO: Launch domain event

@@ -1,7 +1,5 @@
 import { Controller } from './Controller'
 import express = require('express')
-import * as dotenv from 'dotenv'
-dotenv.config({ path: __dirname + '/.env' })
 import config from '../../../../../../config/default'
 
 export class Controllers {

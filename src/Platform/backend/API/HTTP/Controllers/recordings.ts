@@ -1,5 +1,4 @@
 import { Request, Response, Router } from 'express'
-import { uploadRecording } from '../../../Recordings/Application/Services/uploadRecording'
 import { Multer } from 'multer'
 import multer = require('multer')
 import { Controller } from './Controller'
@@ -9,6 +8,19 @@ import { PlatformSDK } from '../../../SDK'
 
 export class RecordingsController implements Controller {
   private readonly _router: Router
+  private _SDK: PlatformSDK
+
+  uploadRecording = async (req: Request, res: Response) => {
+    console.info('uploadRecording')
+    const recording = new Recording(req.file.filename)
+    await this._SDK.uploadRecording(recording)
+    res.send('OKAY')
+  }
+
+  getRecording = (req: Request, res: Response) => {
+    console.info('getRecording')
+    res.sendFile(path.resolve(__dirname, '../../../../../../videos', 'video-' + req.params.id))
+  }
 
   constructor() {
     const upload: Multer = multer({
@@ -23,20 +35,9 @@ export class RecordingsController implements Controller {
     })
 
     this._router = Router()
-    this._router.post('/api/v1/recording', upload.single('video'), RecordingsController.uploadRecording)
-    this._router.get('/api/v1/recording/:id', RecordingsController.getRecording)
-  }
-
-  private static uploadRecording(req: Request, res: Response) {
-    console.info('uploadRecording')
-    const recording = new Recording(req.file.filename)
-    PlatformSDK.uploadRecording(recording)
-    res.send('OKAY')
-  }
-
-  private static getRecording(req: Request, res: Response) {
-    console.info('uploadRecording')
-    res.sendFile(path.resolve(__dirname, '../../../../../../videos', 'video-' + req.params.id))
+    this._router.post('/api/v1/recording', upload.single('video'), this.uploadRecording)
+    this._router.get('/api/v1/recording/:id', this.getRecording)
+    this._SDK = new PlatformSDK()
   }
 
   public router(): Router {

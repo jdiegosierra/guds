@@ -9,7 +9,7 @@
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"tests/**/*.ts\\\"",
-    "start": "ts-node src/Platform/backend/index.ts",
+    "start": "ts-node src/Platform/backend/entrypoint.ts",
     "start:dev": "nodemon",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

@@ -3,9 +3,13 @@ import { RecordingRepositoryMongoDB } from '../Recordings/Infrastructure/Persist
 import { uploadRecording } from '../Recordings/Application/Services/uploadRecording'
 
 export class PlatformSDK {
-  public static uploadRecording(recording: Recording) {
-    const repository = new RecordingRepositoryMongoDB()
-    repository.setup()
-    uploadRecording(recording, repository)
+  private readonly repository: RecordingRepositoryMongoDB
+
+  constructor() {
+    this.repository = new RecordingRepositoryMongoDB('mongodb://127.0.0.1:27017/local')
+    this.repository.connect().then()
+  }
+  public async uploadRecording(recording: Recording): Promise<void> {
+    await uploadRecording(recording, this.repository)
   }
 }
