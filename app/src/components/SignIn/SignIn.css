@@ -1,0 +1,42 @@
+.SignIn {
+  text-align: center;
+}
+
+.SignIn-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .SignIn-logo {
+    animation: SignIn-logo-spin infinite 20s linear;
+  }
+}
+
+.SignIn-header {
+  background: url(../../images/login_background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover; /*Image Background*/
+  -moz-background-size: cover; /*Image Background*/
+  -o-background-size: cover; /*Image Background*/
+  background-size: cover; /*Image Background*/
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  /*color: white;*/
+}
+
+.SignIn-link {
+  color: #61dafb;
+}
+
+@keyframes SignIn-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
